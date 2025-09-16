@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krishi Mitra - Agriculture Assistant</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f7f0;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #vapi-widget-container {
+      width: 400px;
+      height: 500px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+
+    /* Dial pad styles */
+    .dialpad {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      grid-gap: 10px;
+      justify-content: center;
+    }
+
+    .dialpad button {
+      width: 80px;
+      height: 80px;
+      font-size: 22px;
+      border-radius: 50%;
+      border: none;
+      background-color: #14B8A6;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .dialpad button:active {
+      background-color: #0f766e;
+      transform: scale(0.95);
+    }
+
+    #dial-display {
+      width: 260px;
+      height: 40px;
+      margin: 10px auto;
+      font-size: 20px;
+      text-align: center;
+      border: 2px solid #14B8A6;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    #call-btn {
+      margin-top: 15px;
+      padding: 12px 30px;
+      font-size: 18px;
+      background: #22c55e;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+    }
+
+    #call-btn:active {
+      background: #15803d;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Container for VAPI Widget -->
+  <div id="vapi-widget-container"></div>
+
+  <!-- Dial Pad -->
+  <input type="text" id="dial-display" readonly placeholder="Enter number...">
+  <div class="dialpad">
+    <button onclick="pressNum('1')">1</button>
+    <button onclick="pressNum('2')">2</button>
+    <button onclick="pressNum('3')">3</button>
+    <button onclick="pressNum('4')">4</button>
+    <button onclick="pressNum('5')">5</button>
+    <button onclick="pressNum('6')">6</button>
+    <button onclick="pressNum('7')">7</button>
+    <button onclick="pressNum('8')">8</button>
+    <button onclick="pressNum('9')">9</button>
+    <button onclick="pressNum('*')">*</button>
+    <button onclick="pressNum('0')">0</button>
+    <button onclick="pressNum('#')">#</button>
+  </div>
+  <button id="call-btn" onclick="makeCall()">📞 Call</button>
+
+  <!-- VAPI SDK -->
+  <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async></script>
+
+  <script>
+    let widget;
+
+    // Wait until VAPI SDK is ready
+    window.addEventListener('vapi-ready', function () {
+      widget = window.VAPI_WIDGET;
+
+      // Default assistant (Krishi Mitra)
+      widget.mount("#vapi-widget-container", {
+        assistantId: "7d7746ed-2852-4163-9979-230098057d79",
+        publicKey: "9bfd3b85-3940-4710-ae71-fdbc2c3eb8cc"
+      });
+
+      widget.sendMessage("ഹായ് 👋, ഞാൻ കൃഷി മിത്ര. എനിക്ക് നിങ്ങളെ എങ്ങനെ സഹായിക്കാം?");
+    });
+
+    // Dial pad logic
+    function pressNum(num) {
+      const display = document.getElementById('dial-display');
+      display.value += num;
+    }
+
+    function makeCall() {
+      const number = document.getElementById('dial-display').value;
+
+      if (number === "2001") {
+        // Connect to second assistant
+        widget.mount("#vapi-widget-container", {
+          assistantId: "843746ee-e874-41ae-a674-71be7931c70a", // second assistant
+          publicKey: "9bfd3b85-3940-4710-ae71-fdbc2c3eb8cc"
+        });
+        widget.sendMessage("Connected to Secondary Assistant 📞");
+      } else {
+        alert("Dialed number not available!");
+      }
+    }
+  </script>
+
+</body>
+</html>
