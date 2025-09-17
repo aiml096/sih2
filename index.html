@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Krishi Mitra - Agriculture Assistant</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f0f7f0;
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kerala Farmer AI Assistant</title>
 </head>
-<body>
+<body style="background-color:#111; color:#fff;">
 
-  <!-- VAPI Widget with Malayalam support -->
+  <h1>🌾 Kerala Farmer AI Assistant</h1>
+  <p>Talk in Malayalam or English and get farming help instantly.</p>
+
+  <!-- Vapi Widget -->
   <vapi-widget
     public-key="9bfd3b85-3940-4710-ae71-fdbc2c3eb8cc"
     assistant-id="843746ee-e874-41ae-a674-71be7931c70a"
@@ -34,21 +26,15 @@
     title="TALK WITH AI"
     start-button-text="Start"
     end-button-text="End Call"
-    chat-first-message="ഹായ്! ഞാൻ കൃഷി മിത്ര, നിങ്ങളുടെ കാർഷിക സഹായി. എങ്ങനെ സഹായിക്കണം?"
-    chat-placeholder="നിങ്ങളുടെ ചോദ്യം ഇവിടെ ടൈപ്പ് ചെയ്യുക..."
+    chat-first-message="Hey, How can I help you today?"
+    chat-placeholder="Type your message..."
     voice-show-transcript="true"
     consent-required="false"
-    language="ml-IN"
-    tts-language="ml-IN"
-    stt-language="ml-IN"
   ></vapi-widget>
 
-  <!-- VAPI SDK -->
-  <script 
-    src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" 
-    async 
-    type="text/javascript">
-  </script>
+  <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" 
+          async 
+          type="text/javascript"></script>
 
 </body>
 </html>
